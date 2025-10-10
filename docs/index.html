@@ -1,0 +1,2929 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariane Lesnyak | Content Engineering for Modern Technology Consultancies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        /* Custom Pyyne-inspired fonts */
+        @font-face {
+            font-family: 'Protokoll';
+            src: url('NxMebmihlTV7.com/ufonts/d5031c_98d060a9edf544fdad56ebac44b578c5/woff2/0RlhUdZQTiYn.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Kern Standard';
+            src: url('NxMebmihlTV7.com/ufonts/d5031c_57e5d6e74dc848578ac5305e14ae4a4f/woff2/U1euDJekFzaI.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Design System Variables */
+        :root {
+            --primary-bg: #FFFFFF;
+            --primary-text: #000000;
+            --secondary-text: #6B7280;
+            --tertiary-text: #9CA3AF;
+            --accent-primary: #D8F380;
+            --accent-hover: #000000;
+            --surface-primary: #FFFFFF;
+            --surface-secondary: #F9FAFB;
+            --surface-dark: #000000;
+            --border-color: #E5E7EB;
+            --shadow-md: none;
+            --pyyne-dark-green: #00332e;
+            --pyyne-light-gray: #9CA3AF;
+            --pyyne-green: #00ff9d;
+            --pyyne-black: #000000;
+            --pyyne-white: #ffffff;
+	    --pyyne-lime: #D8F380;
+            --pyyne-dark-green: #006644;
+            --safari-bg: #282828;
+            --header-bar: #3c3c3c;
+            --red-edit: #ff474c;
+            --bg: #000;
+            --muted: #ccc;
+  
+
+
+        }
+
+        * {
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* estado inicial invisível */
+        .section {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* quando visível */
+        .section.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* impacto com efeito extra (escala) */
+        .impact-grid {
+          transform: scale(0.95);
+          transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+        }
+
+        .impact-grid.visible {
+          transform: scale(1);
+          opacity: 1;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--primary-bg);
+            color: var(--primary-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 9999;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+          font-family: 'Protokoll', 'Inter', sans-serif;
+          font-size: 22px;
+          font-weight: 300;
+          margin-left: 16px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          color: var(--primary-text);
+          white-space: nowrap;
+        }
+
+        
+        .nav-lets-talk {
+            background: transparent;
+            color: #000;
+            border: 2px solid #000;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-lets-talk:hover {
+            background: #000;
+            color: white;
+        }
+
+       /* Hero Section */
+          .hero-section {
+          padding-top: 120px;
+        }
+
+        .hero-title {
+            font-family: 'Protokoll Bold', 'Inter', sans-serif;
+            font-size: 78px;
+            line-height: 83.5px;
+            letter-spacing: -2.3px;
+            color: var(--primary-text);
+            font-weight: 300;
+            text-align: left;
+
+        }
+
+
+        .btn-primary {
+            font-family: 'Kern Standard', 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 25.2px;
+            letter-spacing: 0.9px;
+            background-color: var(--accent-primary);
+            color: var(--primary-text);
+            padding: 32px 32px;
+            border-radius: 50px;
+            border: 0px solid #000000;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-primary svg {
+            transform: rotate(90deg);
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            color: white;
+        }
+
+        .btn-primary:hover svg path {
+            fill: white;
+        }
+
+        .about {
+            font-family: 'Protokoll Bold', 'Inter', sans-serif;
+            padding-top: 20px;
+            font-size: 78px;
+            line-height: 83.5px;
+            letter-spacing: -2.3px;
+            color: var(--primary-text);
+            font-weight: 300;
+            text-align: left;
+        }
+
+        /* Technical Impact Section */
+        .impact-grid {
+          padding-top:100px;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: center;
+          gap: 24px;
+          margin: 40px auto;
+          align-items: stretch;
+        }
+
+        .impact-card {
+          border-radius: var(--overflow-wrapper-border-radius, 20px);
+          background: var(--surface-primary, #fff);
+          border: 1px solid var(--pyyne-dark-green, #00332E);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+          padding: 24px;
+          max-width: 380px;
+          flex: 1 1 240px;
+          display: flex;
+          flex-wrap: nowrap;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 24px;
+        }
+
+        .impact-card .impact-header {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 12px;
+        }
+
+        .impact-card .impact-img-placeholder {
+         width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex: 0 0 auto;
+          align-self: flex-start;
+        }
+
+        .impact-card .impact-texts {
+          display: flex;
+          flex-direction: column;
+          justify-content: justify;
+        }
+
+        .impact-card .impact-title {
+          margin: 0;
+          font-size: 16px;
+          font-weight: 700;
+          color: #00332E;
+        }
+
+        .impact-card .impact-desc {
+          margin: 2px 0 0;
+          font-size: 14px;
+          font-weight: 400;
+          color: #000;
+        }
+
+        @media (max-width: 768px) {
+          .impact-grid {
+            flex-wrap: wrap;
+          }
+          .impact-card {
+            min-width: 100%;
+          }
+        }
+
+        /* Case Studies Section - Black Background Pyyne Style */
+        
+        /* Linha divisória entre case studies */
+        .case-divider {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 60px 0;
+            width: 100%;
+        }
+
+      .case-studies-section {
+            width: 100%;
+            padding: 80px 5%;
+            background: var(--bg);
+        }
+
+        .container {
+            min-width: 100%;
+ padding: 80px 5%;
+
+            margin: 0 auto;
+ background: var(--bg)
+        }
+
+        .case-study {
+            margin-bottom: 100px;
+            padding-bottom: 80px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .case-title {
+            font-family: 'Protokoll', Arial, sans-serif;
+            font-size: 68px;
+            line-height: 74.8px;
+            letter-spacing: -2px;
+            color: #fff;
+            text-align: left;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            padding: 8px 18px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            background: var(--pyyne-lime);
+            color: #000;
+        }
+
+        .tag-skill {
+            background: var(--pyyne-dark-green);
+            color: #fff;
+margin-bottom: 40px;
+        }
+
+        .challenge-solution-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .challenge-after-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .detail-box {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid var(--pyyne-lime);
+        }
+
+        .detail-title {
+            font-family: 'Kern Standard', Inter, sans-serif;
+            font-size: 28px;
+            line-height: 39.2px;
+            letter-spacing: -0.3px;
+            color: #fff;
+            margin-bottom: 16px;
+            margin-top: 8px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .detail-title svg {
+            fill: var(--pyyne-lime) !important;
+        }
+
+        .detail-content {
+            font-family: 'Kern Standard', Inter, sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            color: var(--muted);
+        }
+
+        /* Safari Window / Editor pieces */
+        .safari-window {
+            width: 100%;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #444;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .safari-header {
+            background: var(--header-bar);
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #444;
+        }
+
+        .safari-dots {
+            display: flex;
+            gap: 7px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red {
+            background: #ff5f56;
+        }
+
+        .dot-yellow {
+            background: #ffbd2e;
+        }
+
+        .dot-green {
+            background: #27c93f;
+        }
+
+        .safari-url {
+            flex: 1;
+            padding: 4px 12px;
+            background: #444;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #ccc;
+            text-align: center;
+        }
+
+        .gutenberg-editor {
+            background: var(--safari-bg);
+            padding: 24px;
+            height: 350px;
+            overflow: hidden;
+            color: var(--muted);
+        }
+
+        .wp-block {
+            background: #333;
+            border: 1px solid #444;
+            border-left: 5px solid var(--pyyne-lime);
+            border-radius: 6px;
+            padding: 18px;
+            margin-bottom: 45px;
+        }
+
+        .block-type-text {
+            color: var(--pyyne-lime);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 11px;
+            margin-top: 10px;
+margin-bottom: 15px;
+        }
+
+        .edit-deleted {
+            color: var(--red-edit);
+            text-decoration: line-through;
+        }
+
+        .edit-inserted {
+            color: var(--red-edit);
+            font-weight: 700;
+            animation: reveal 0.3s ease forwards;
+        }
+
+        @keyframes reveal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .edit-final {
+            color: #ccc;
+            font-weight: normal;
+        }
+
+        /* WordPress Editor Dark */
+        .wp-editor-dark {
+            background-color: var(--safari-bg);
+            padding: 24px;
+            height: 350px;
+            overflow: hidden;
+            display: flex;
+            position: relative;
+        }
+
+        .wp-sidebar {
+                width: 60px;
+    background-color: #333;
+    border: 1px solid #444;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 16px;
+    padding: 14px;
+    gap: 30px;
+        }
+
+        .wp-plus-icon {
+            width: 28px;
+            height: 28px;
+            color: var(--pyyne-lime);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wp-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--pyyne-lime);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .wp-icon:hover {
+            background-color: #444;
+        }
+
+        .wp-icon:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 100%;
+            top: 40%;
+            transform: translateY(-50%);
+            background: #000;
+            color: var(--pyyne-lime);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+            margin-left: 8px;
+            border: 1px solid var(--pyyne-lime);
+            z-index: 100;
+        }
+
+        .wp-content-area {
+            flex-grow: 1;
+            padding: 15px;
+            position: static;
+
+        }
+
+        .wp-block-dark {
+            padding: 20px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            margin-top: 10px;
+margin-bottom:15px;
+            background-color: #333;
+            color: #ccc;
+            transition: all 0.5s ease;
+
+
+        }
+
+        .wp-block-dark.with-left-border {
+            border-left: 5px solid var(--pyyne-lime);
+
+
+        }
+
+        .wp-block-active {
+            box-shadow: 0 0 0 2px var(--pyyne-lime);
+margin-top: 5px;
+        }
+
+        .wp-block-target {
+            background-color: #3a3a3a;
+            border-color: var(--pyyne-lime);
+            box-shadow: 0 0 0 2px var(--pyyne-lime);
+        }
+
+        /* Floating Animation Block */
+        .floating-block {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            padding: 12px 18px;
+            background: var(--pyyne-lime);
+            color: #000;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-weight: 700;
+            font-size: 13px;
+            max-width: 280px;
+            text-align: center;
+            z-index: 10;
+            opacity: 0;
+            transform: scale(0.8);
+            cursor: default;
+        }
+
+        .floating-block.visible {
+            opacity: 1;
+            transform: scale(1);
+            transition: all 0.3s ease;
+        }
+
+        .floating-block.moving {
+            transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .floating-block.fading {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        /* Cursor Animation */
+        .animated-cursor {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="%23D8F380" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l-4 4 4 4m-4-4h11a4 4 0 0 0 0-8h-1"/></svg>');
+            background-repeat: no-repeat;
+            z-index: 15;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .animated-cursor.moving {
+            opacity: 1;
+            transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animated-cursor.hidden {
+            opacity: 0;
+        }
+
+        /* Content Animation */
+        .content-fade-out {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .new-content-pulse {
+            animation: colorPulse 1.5s ease-in-out 3;
+        }
+
+        @keyframes colorPulse {
+            0%, 100% { color: var(--pyyne-lime); }
+            50% { color: #fff; }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .content-final {
+            color: #fff;
+        }
+
+        /* Metrics */
+        .metrics-section {
+            margin-top: 40px;
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 32px;
+            border: 1px solid var(--pyyne-lime);
+        }
+
+        .metrics-title {
+            font-family: 'Kern Standard', Inter, sans-serif;
+            font-size: 28px;
+            line-height: 39.2px;
+            letter-spacing: -0.3px;
+            color: #fff;
+            margin-bottom: 24px;
+            margin-top: 8px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .metrics-title svg {
+            fill: var(--pyyne-lime) !important;
+        }
+
+        .metric-row {
+            background: transparent;
+            border-radius: 0;
+            padding: 16px 0;
+            margin-bottom: 16px;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .metric-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .metric-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .metric-bar {
+            height: 12px;
+            background-color: #333;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .metric-fill {
+            height: 100%;
+            background-color: var(--pyyne-lime);
+            border-radius: 6px;
+            width: 0;
+            transition: width 1.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s;
+        }
+
+        .case-study .metric-fill {
+            width: var(--metric-value);
+        }
+
+        .placeholder-box {
+            background: var(--bg);
+            border: 2px dashed var(--pyyne-lime);
+            border-radius: 12px;
+            height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Case 1 Specific Styles */
+        .detail-box-case1 {
+            flex: 1;
+            background: #000;
+            border: 1px solid #D8F380;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 480px;
+        }
+
+       
+        
+        .safari-window-case1 {
+            width: 100%;
+            background: #1d1d1d;
+            border: 1px solid #444;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .roll-window {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+	    color: #fff;
+            background: #1d1d1d;
+            border-radius: 6px;
+            padding: 12px;
+        }
+
+        .roll-inner {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            animation: scrollText 20s linear infinite;
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(-100%); }
+        }
+
+        .err {
+            text-decoration-line: underline;
+            text-decoration-color: #ff474c;
+            text-decoration-style: wavy;
+        }
+
+        .accordion {
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .acc-item {
+            background: #222;
+            border: 1px solid #333;
+            margin-bottom: 8px;
+            border-radius: 6px;
+        }
+
+        .acc-head {
+            padding: 12px 16px;
+            color: #D8F380;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        .acc-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            padding: 0 16px;
+        }
+
+        .acc-body p {
+            margin: 10px 0;
+            color: #ccc;
+        }
+
+        .interactive-message {
+            margin-top: 12px;
+            padding: 6px 10px;
+                        border: 1px solid var(--pyyne-lime);
+            border-radius: 6px;
+            font-size: 11px;
+            color: var(--pyyne-lime);
+            display: flex;
+                flex-direction: row;
+   justify-content: center;
+            gap: 18px;
+align-items: center;
+
+        }
+
+ .interactive-message svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+    
+        }
+
+        /* Chatbot Animation Styles */
+        .chat-message {
+            margin-bottom: 8px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s ease;
+        }
+
+        .chat-message.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chat-message.fade-out {
+            opacity: 0.3;
+            transition: opacity 2s ease;
+        }
+
+        .timeout-message {
+            color: #ff474c;
+            font-style: italic;
+            opacity: 0;
+            
+margin-top: 20px;
+text-align: center;
+        }
+
+        .timeout-message.visible {
+            transition: opacity 0.5;
+
+            animation: blinkSlow 1s infinite;
+        }
+
+        @keyframes blinkSlow {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        /* Chatbot Dialog Bubbles */
+        .user-dialog {
+            background: var(--pyyne-lime);
+            color: #000;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 18px;
+            font-weight: 500;
+            max-width: 70%;
+        }
+
+        .bot-dialog {
+            background: var(--pyyne-dark-green);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 28px;
+            margin-left: auto;
+            text-align: right;
+            max-width: 70%;
+            float: right;
+            clear: both;
+        }
+
+        /* Adjusted heights for chatbot case */
+        .wp-editor-dark.chatbot-after {
+            height: 350px; /* Reduced height */
+        }
+
+        .wp-block-dark.chatbot-header {
+            margin-top: -10px; /* Move up to align with sidebar */
+margin-bottom: 1px;
+        }
+
+        .wp-block-dark.chatbot-content {
+            height: 133px; /* Reduced height to fit better */
+            overflow: hidden;
+            transition: none !important; /* Remover transições que podem causar resize */
+
+
+        }
+
+        /* Chatbot-specific styles */
+        .chatbot-container {
+            background-color: #333;
+            border-radius: 8px;
+            padding: 6px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+                        top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            
+            width: calc(100% - 20px);
+            height: calc(140% - 20px);
+        }
+
+        .chatbot-step {
+            display: flex;
+            flex-direction: column;
+            
+        }
+
+        .chatbot-message {
+            background-color: #444;
+            padding: 6px 12px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 12px;
+            line-height: 1.4;
+            max-width: 100%;
+margin-bottom: -3px;
+text-align: center;
+        }
+
+        .user-message {
+            align-self: flex-start;
+            background-color: #2a5c8a;
+margin-bottom: -3px;
+        }
+
+        .bot-message {
+            align-self: center;
+            background-color: #555;
+            color: #ddd;
+margin-top: -3px;
+
+        }
+
+        .chatbot-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+
+        }
+
+        .chatbot-btn {
+            background-color: var(--pyyne-lime);
+            color: #000;
+            border: none;
+            padding: 5px 11px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 11px;
+
+
+        }
+
+        .chatbot-btn:hover {
+            background-color: #c4e04a;
+        }
+
+        .restart-btn {
+            background-color: transparent;
+            color: var(--pyyne-lime);
+            border: 1px solid var(--pyyne-lime);
+            padding: 5px 11px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        .restart-btn:hover {
+            background-color: var(--pyyne-lime);
+            color: #000;
+margin-top: 12px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .case-title {
+                font-size: 48px;
+                line-height: 54px;
+            }
+            
+            .challenge-after-row {
+                grid-template-columns: 1fr;
+            }
+ .ux-tip {
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            margin-bottom: 24px;
+
+        }
+
+        .ux-tip svg {
+            width: 16px;
+            height: 16px;
+            fill: #8b949e;
+        }
+        
+
+}
+
+
+
+        /* Experience/Education Sections */
+        .section-title {
+            font-family: 'Protokoll', 'Inter', sans-serif;
+            font-size: 48px;
+            line-height: 52px;
+            letter-spacing: -1.5px;
+            color: var(--primary-text);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .experience-card {
+            background: var(--surface-primary);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        /* Languages Section */
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .language-chart-container {
+            text-align: center;
+            background: var(--surface-primary);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .language-chart {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            position: relative;
+        }
+
+        .language-chart canvas {
+            cursor: pointer;
+        }
+
+        .language-name {
+            font-family: 'Kern Standard', 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-text);
+            margin-bottom: 0.25rem;
+        }
+
+        .language-level {
+            font-family: 'Kern Standard', 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--secondary-text);
+        }
+
+        /* Partners Section */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .partner-item {
+            width: 200px;
+            height: 80px;
+            background: #FFFFFF;
+            border: 1px solid #00332e;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .partner-item:hover {
+            filter: grayscale(0%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 51, 46, 0.15);
+        }
+
+        .partner-logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .partner-logo {
+            max-width: 160px;
+            max-height: 50px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Let's Talk Section */
+        .lets-talk-section {
+            background: var(--surface-dark);
+            color: white;
+            padding: 5rem 0;
+        }
+
+        .lets-talk-content {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .lets-talk-title {
+            font-family: 'Kern Standard', 'Inter', sans-serif;
+            font-size: 48px;
+            line-height: 57.6px;
+            letter-spacing: -1.4px;
+            color: white;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            margin-right: 1rem;
+        }
+
+        .lets-talk-cta {
+            font-family: 'Kern Standard', 'Inter', sans-serif;
+            font-size: 48px;
+            line-height: 57.6px;
+            letter-spacing: -1.4px;
+            color: var(--accent-primary);
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        .contact-list-right {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            color: white;
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .contact-item:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--surface-dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-family: 'Kern Standard', 'Inter', sans-serif;
+            font-size: 14px;
+            line-height: 19.6px;
+            letter-spacing: 0px;
+            color: #ffffff;
+            text-align: right;
+        }
+
+        /* Fade-in animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .case-study {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px;
+            }
+            
+            .case-study-left {
+                text-align: center;
+            }
+            
+            .tags-group {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 48px;
+                line-height: 52px;
+                letter-spacing: -1.5px;
+            }
+
+            .case-study {
+                padding: 30px 20px;
+                gap: 30px;
+            }
+            
+            .case-row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .case-title {
+                font-size: 1.7rem;
+            }
+            
+            .case-studies-section .section-title {
+                font-size: 2rem;
+            }
+            
+            .case-item {
+                padding: 20px;
+            }
+
+            .technical-impact-grid,
+            .languages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .case-studies-section {
+                padding: 40px 5%;
+            }
+            
+            .case-study {
+                margin-bottom: 40px;
+                padding: 20px 15px;
+            }
+            
+            .case-tags-container {
+                gap: 15px;
+            }
+            
+            .tags-group {
+                gap: 6px;
+            }
+            
+            .tag {
+                font-size: 0.75rem;
+                padding: 4px 10px;
+            }
+            
+            .case-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 1.25rem;
+            }
+            
+            .case-item-title {
+                font-size: 1rem;
+            }
+
+            .technical-impact-grid,
+            .languages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+               
+font-size: 2.5rem;
+    margin-bottom: 60px;
+    text-align: left;
+    position: relative;
+    display: inline-block;
+    font-family: 'Protokoll', 'Inter', sans-serif;
+    color: white;
+    font-weight: 300;
+            }
+            
+            .case-title {
+                font-size: 1.7rem;
+            }
+
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="w-full px-8 py-4 flex justify-between items-center">
+        <!-- Left: Brand -->
+        <div class="navbar-brand">
+          ARIANE LESNYAK
+        </div>
+
+        <!-- Right: Links -->
+        <div class="hidden md:flex flex-row items-center space-x-6">
+          <a href="#about" class="nav-link">About Me</a>
+          <a href="#technical-impact" class="nav-link">Technical Impact</a>
+          <a href="#partners" class="nav-link">Trusted By</a>
+          <a href="#case-studies" class="nav-link">Case Studies</a>
+          <a href="#experience" class="nav-link">Experience</a>
+          <a href="#education" class="nav-link">Education</a>
+          <a href="#languages" class="nav-link">Languages</a>
+          <a href="#certifications" class="nav-link">Certifications</a>
+	  <a href="#cv" class="nav-link">CV</a>
+          <a href="#contact" class="nav-lets-talk">Let's Talk</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section px-10 py-5 min-h-screen flex items-center bg-white">
+      <div class="text-left ">
+        <h1 class="hero-title mb-8">
+            Strategic Content Engineering <br> for Technology-Driven Brands
+        </h1>
+        <!-- Subtítulo / Proposta de Valor -->
+        <p class="text-xl text-gray-600 mb-12 max-w-3xl" style="text-align: left;">
+            Architecting WordPress ecosystems that transform technical complexity <br> into competitive advantage, blending editorial excellence <br>with engineering precision.
+        </p>
+
+        <a href="#case-studies" class="btn-primary ">
+          VIEW CASE STUDIES
+          <svg data-bbox="20 59.5 160 81.001" viewBox="0 0 200 200" height="20" width="20" xmlns="http://www.w3.org/2000/svg" data-type="shape">
+            <g>
+                <path fill="currentColor" d="M177.687 128.054L105.35 61.402a7.205 7.205 0 0 0-5.35-1.886 7.198 7.198 0 0 0-5.349 1.886l-72.338 66.652a7.165 7.165 0 0 0-.407 10.138 7.172 7.172 0 0 0 5.283 2.309c1.743 0 3.49-.629 4.872-1.902L100 75.999l67.939 62.598a7.197 7.197 0 0 0 10.155-.406 7.163 7.163 0 0 0-.407-10.137z"></path>
+            </g>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="pb-20 bg-white fade-in-section">
+        <div class="mx-auto px-6 max-w-4xl text-center">
+            <h1 class="section-title">About Me</h1>
+            <div class="text-xl text-gray-600">
+                <p class="mb-6">
+                    Content engineering at scale: WordPress architecture meets AI-driven workflows.
+                </p>
+                <p>
+                    10,000+ content migrations and 15,000+ asset validations deliver precision, compliance, and growth for complex technical projects.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Impact Section -->
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-header">
+          <div class="impact-img-placeholder"><img src="C:\Users\Dell\Downloads\web-design.png"</img></div>
+          <div class="impact-texts">
+            <h3 class="impact-title">Content Editing and Publishing</h3><br>
+            <p class="impact-desc">Implementing design workflows into flawless WordPress experiences—ensuring grammar, tone, semantic HTML, accessibility, and pixel-perfect Figma alignment for landing pages and articles.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-header">
+          <div class="impact-img-placeholder"><img src="C:\Users\Dell\Downloads\quality-control.png"></img></div>
+          <div class="impact-texts">
+            <h3 class="impact-title">QA-Driven Publishing Pipelines</h3><br>
+            <p class="impact-desc">Coordinating high-volume publishing with rigorous QA protocols—
+ensuring error-free delivery through cross-functional collaboration with marketing and dev teams.
+</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-header">
+          <div class="impact-img-placeholder"><img src="C:\Users\Dell\Downloads\seo.png"></img></div>
+          <div class="impact-texts">
+            <h3 class="impact-title">SEO and Performance Optimization</h3><br>
+            <p class="impact-desc">Executing on-page SEO edits, A/B testing, and performance tracking—driving organic growth and engagement through accurate, measurable results with marketing input.</p>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="impact-card">
+        <div class="impact-header">
+          <div class="impact-img-placeholder"><img src="C:\Users\Dell\Downloads\6572257_ai_creative_education_idea_knowledge_icon.png"></img></div>
+          <div class="impact-texts">
+            <h3 class="impact-title">AI-Assisted Editorial Governance</h3><br>
+            <p class="impact-desc">Integrating AI tools to boost efficiency for scalable content operations—bridging automation and human touch to maintain compliance standards in key publishing environments.</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Partners/Trusted By Section -->
+    <section id="partners" class="py-40 bg-white fade-in-section">
+        <div class="max-w-4x2 mx-auto px-6">
+            <h2 class="section-title">Trusted By</h2>
+            <div class="partners-grid">
+                <div class="partner-item">
+                    <div class="partner-logo-container">
+                        <img src="saga-logo.png" alt="SAGA Translations" class="partner-logo">
+                    </div>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-logo-container">
+                        <img src="tw-logo.png" alt="TW Business Content" class="partner-logo">
+                    </div>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-logo-container">
+                        <img src="tabuleiro-filmes.png" alt="Tabuleiro Filmes" class="partner-logo">
+                    </div>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-logo-container">
+                        <img src="iyuno-logo.png" alt="Iyuno SDI Group" class="partner-logo">
+                    </div>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-logo-container">
+                        <img src="itc-global-logo.png" alt="ITC Global" class="partner-logo">
+                    </div>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-logo-container">
+                        <img src="acclaro-logo.png" alt="Acclaro" class="partner-logo">
+                    </div>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-logo-container">
+                        <img src="moshi-media-logo.png" alt="Moshi Media" class="partner-logo">
+                    </div>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-logo-container">
+                        <img src="tikinet-logo.png" alt="Tikinet" class="partner-logo">
+                    </div>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-logo-container">
+                        <img src="claro-logo.png" alt="Claro" class="partner-logo">
+                    </div>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-logo-container">
+                        <img src="vsi-vox-mundi-logo.png" alt="VSI VOX MUNDI" class="partner-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section with Black Background -->
+     <section class="case-studies-section">
+        <div class="container">
+
+            <!-- CASE 1: Editorial Guidelines & Style System Governance -->
+ <h1 class="section-title" style="color:#fff; margin-top:-120px;">Case Studies</h1>
+<br>
+            <div class="case-study" id="case-1">
+                <h3 class="case-title">Editorial Guidelines &amp;<br>Style System Governance</h3>
+                <div class="tags-row">
+                    <span class="tag">Google Docs</span>
+                    <span class="tag">Confluence</span>
+                    <span class="tag">Notion</span>
+                </div>
+                <div class="tags-row">
+                    <span class="tag tag-skill">Style Guide Dev</span>
+                    <span class="tag tag-skill">Grammar & Tone</span>
+                    <span class="tag tag-skill">Editorial QA</span>
+                </div>
+
+                <div class="challenge-solution-row">
+                    <div class="detail-box">
+                        <h4 class="detail-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2 text-[#2CB6DD]">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="#D8F380"></path>
+                            </svg>
+                            The Challenge
+                        </h4>
+                        <div class="detail-content">
+                            <p>Multiple teams published inconsistent tone, punctuation and capitalization across help
+                                content, landing pages and in-app microcopy. This created brand fragmentation and rework
+                                across translations.</p>
+                        </div>
+                    </div>
+                    <div class="detail-box">
+                        <h4 class="detail-title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2 text-[#2CB6DD]">
+                                <path d="M5.99 6.91c.39.38 1.03.38 1.41 0a.996.996 0 000-1.41l-.71-.71A.996.996 0 105.28 6.2l.71.71zM5 12c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1s.45 1 1 1h1c.55 0 1-.45 1-1zm16 1c.55 0 1-.45 1-1s-.45-1-1-1h-1c-.55 0-1 .45-1 1s.45 1 1 1h1zm-2.99-6.09l.71-.71a.996.996 0 10-1.41-1.41l-.71.71a.996.996 0 101.41 1.41zM15 15.98c1.21-.92 2-2.35 2-3.98 0-3.11-2.84-5.56-6.07-4.88-1.94.4-3.48 2-3.84 3.95-.37 2.01.48 3.83 1.91 4.91h6zM12 5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1s-1 .45-1 1v1c0 .55.44 1 1 1zM12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm-2.25-5c-.412 0-.75.45-.75 1s.338 1 .75 1h4.5c.412 0 .75-.45.75-1s-.338-1-.75-1h-4.5z" fill="#D8F380"></path>
+                            </svg>
+                            The Solution
+                        </h4>
+                        <div class="detail-content">
+                            <p>Delivered an interactive editorial style system: glossary, grammar rules, microcopy
+                                patterns, punctuation & capitalization rules, and a one-page Figma component for content
+                                layout. Integrated checklists for editors & localization teams to reduce rework.</p>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Before: inconsistent snippets -->
+ 			<div class="challenge-after-row">
+                        <div class="detail-box-case1">
+                        <div class="title-row">
+
+
+
+  <h4 class="detail-title">
+<svg width="24" height="24" viewBox="0 0 640 640" fill="#D8F380">
+                                <path d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z"></path>
+                            </svg>                            Before	</h4>
+                        </div>
+
+                        <div class="safari-window-case1">
+                            <div class="safari-header">
+                                <div class="safari-dots">
+                                    <div class="dot dot-red"></div>
+                                    <div class="dot dot-yellow"></div>
+                                    <div class="dot dot-green"></div>
+                                </div>
+                                <div class="safari-url">style-guide.company.com/draft</div>
+                            </div>
+                            <div class="roll-window">
+                                <div class="roll-inner">
+                                    <p>
+                                        <span class="err">Our Team are commited</span> to ensure clear comunications.<br><br>
+                                        The <span class="err">tone of voice change randomly</span> Between Sentences.<br><br>
+                                        <span class="err">Avoid unnecessary exclamation marks!!!</span><br><br>
+                                        1. Go to Settings<br>
+                                        2. Tap Profile.<br>
+                                        <span class="err">2. Change you user name.</span><br><br>
+                                        <span class="err">Recheck the punctuations on titles and subTitles</span><br><br>
+                                        Words Like <span class="err">USER</span> and <span class="err">User</span> are
+                                        mixed In text.<br><br>
+                                        <span class="err">dont forget commas after greetings</span>.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <!-- After: published style guide + interactive snippets -->
+                    <div class="detail-box-case1">
+                        <div class="title-row">
+ <h4 class="detail-title">
+                           <svg width="24" height="24" viewBox="0 0 640 640" fill="#D8F380">
+                                <path d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"></path>
+                            </svg>
+                            After</h4>
+                        </div>
+                        <div class="safari-window-case1">
+                            <div class="safari-header">
+                                <div class="safari-dots">
+                                    <div class="dot dot-red"></div>
+                                    <div class="dot dot-yellow"></div>
+                                    <div class="dot dot-green"></div>
+                                </div>
+                                <div class="safari-url">Published Editorial Guidelines</div>
+                            </div>
+                            <div
+                                style="padding:20px;background:#1d1d1d;flex:1;overflow:hidden;display:flex;align-items:center;">
+                                <div class="accordion">
+                                    <div class="acc-item">
+                                        <div class="acc-head">Grammar <span>▾</span></div>
+                                        <div class="acc-body">
+                                            <p>Use active voice, maintain consistent tenses, and check subject–verb
+                                                agreement.</p>
+                                        </div>
+                                    </div>
+                                    <div class="acc-item">
+                                        <div class="acc-head">Numbers <span>▾</span></div>
+                                        <div class="acc-body">
+                                            <p>Spell out one to nine, use numerals for 10 and above.</p>
+                                        </div>
+                                    </div>
+                                    <div class="acc-item">
+                                        <div class="acc-head">Lowercase vs Uppercase <span>▾</span></div>
+                                        <div class="acc-body">
+                                            <p>Use sentence case for UI and notifications; Title Case for section
+                                                headings.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Interactive message -->
+                        <div class="interactive-message">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                <path d="M224 104C224 81.9 241.9 64 264 64C286.1 64 304 81.9 304 104L304 252.2C312.5 244.6 323.7 240 336 240C356.6 240 374.2 253 381 271.2C389.8 261.9 402.2 256 416 256C441.3 256 462 275.5 463.9 300.3C472.4 292.6 483.7 288 496 288C522.5 288 544 309.5 544 336L544 448C544 518.7 486.7 576 416 576L330.7 576C325.7 576 320.8 575.7 316 575C260.7 569.4 209.8 541 176 496L104 400C90.7 382.3 94.3 357.3 112 344C129.7 330.7 154.7 334.3 168 352L224 426.7L224 104zM336 368C336 359.2 328.8 352 320 352C311.2 352 304 359.2 304 368L304 464C304 472.8 311.2 480 320 480C328.8 480 336 472.8 336 464L336 368zM384 352C375.2 352 368 359.2 368 368L368 464C368 472.8 375.2 480 384 480C392.8 480 400 472.8 400 464L400 368C400 359.2 392.8 352 384 352zM464 368C464 359.2 456.8 352 448 352C439.2 352 432 359.2 432 368L432 464C432 472.8 439.2 480 448 480C456.8 480 464 472.8 464 464L464 368z" fill="#D8F380"/>
+                            </svg>
+                            <span>Click the collapses to interact with the prototype</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="metrics-section">
+                    <h4 class="metrics-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2 text-[#D8F380]">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="currentColor"></path>
+                        </svg>
+                        Metrics
+                    </h4>
+                    <div class="metric-row">
+                        <div class="metric-label"><span>Adherence to Style</span><span
+                                style="color:var(--pyyne-lime)">92%</span></div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="--metric-value:92%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-label"><span>Editorial Rework</span><span
+                                style="color:var(--pyyne-lime)">-60%</span></div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="--metric-value:60%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-label"><span>Time to Publish</span><span
+                                style="color:var(--pyyne-lime)">-35%</span></div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="--metric-value:35%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Linha divisória -->
+            <div class="case-divider"></div>
+<br><br>
+            <!-- CASE 2: VivaZen Clinic — Content Localization -->
+            <div class="case-study" id="case-2">
+                <h3 class="case-title">VivaZen Clinic<br>Content Localization</h3>
+                <div class="tags-row">
+                    <span class="tag">WordPress</span>
+                    <span class="tag">MemoQ</span>
+                    <span class="tag">Google Docs</span>
+                </div>
+                <div class="tags-row">
+                    <span class="tag tag-skill">Content Localization</span>
+                    <span class="tag tag-skill">Proofreading</span>
+                    <span class="tag tag-skill">Health-Tech Compliance</span>
+                </div>
+
+                <div class="challenge-solution-row">
+                    <div class="detail-box">
+                        <h4 class="detail-title">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2 text-[#2CB6DD]">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="#D8F380"></path>
+                            </svg>
+                            The Challenge
+                        </h4>
+                        <div class="detail-content">
+                            <p>VivaZen needed compliant, user-friendly content for their weight management program that
+                                balanced medical accuracy with emotional support while meeting strict health-tech
+                                regulations.</p>
+                        </div>
+                    </div>
+                    <div class="detail-box">
+                        <h4 class="detail-title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2 text-[#2CB6DD]">
+                                <path d="M5.99 6.91c.39.38 1.03.38 1.41 0a.996.996 0 000-1.41l-.71-.71A.996.996 0 105.28 6.2l.71.71zM5 12c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1s.45 1 1 1h1c.55 0 1-.45 1-1zm16 1c.55 0 1-.45 1-1s-.45-1-1-1h-1c-.55 0-1 .45-1 1s.45 1 1 1h1zm-2.99-6.09l.71-.71a.996.996 0 10-1.41-1.41l-.71.71a.996.996 0 101.41 1.41zM15 15.98c1.21-.92 2-2.35 2-3.98 0-3.11-2.84-5.56-6.07-4.88-1.94.4-3.48 2-3.84 3.95-.37 2.01.48 3.83 1.91 4.91h6zM12 5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1s-1 .45-1 1v1c0 .55.44 1 1 1zM12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm-2.25-5c-.412 0-.75.45-.75 1s.338 1 .75 1h4.5c.412 0 .75-.45.75-1s-.338-1-.75-1h-4.5z" fill="#D8F380"></path>
+                            </svg>
+                            The Solution
+                        </h4>
+                        <div class="detail-content">
+                            <p>Created localized editorial templates, glossary & LQA checks; implemented guided
+                                Gutenberg flows and a small QA dashboard to track translation consistency and
+                                compliance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="challenge-after-row">
+                    <!-- Before -->
+                    <div class="detail-box">
+                        <h4 class="detail-title">
+                            <svg width="24" height="24" viewBox="0 0 640 640" fill="#D8F380">
+                                <path
+                                    d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z" />
+                            </svg>
+                            Before
+                        </h4>
+
+                        <div class="safari-window">
+                            <div class="safari-header">
+                                <div class="safari-dots">
+                                    <div class="dot dot-red"></div>
+                                    <div class="dot dot-yellow"></div>
+                                    <div class="dot dot-green"></div>
+                                </div>
+                                <div class="safari-url">vivazen.com/wp-admin/post.php?post=123</div>
+                            </div>
+
+                            <div class="gutenberg-editor">
+                                <div class="wp-block">
+                                    <h2 id="post-title"
+                                        style="font-size: 20px; font-weight: bold; color: white; margin: 0;">
+                                        <span class="original-title">Enhancing QA with Generative AI</span>
+                                    </h2>
+                                    <p class="block-type-text">Block: Title (H2)</p>
+                                </div>
+
+                                <div class="wp-block">
+                                    <p id="paragraph-1"
+                                        style="color: #ccc; line-height: 1.5; margin: 0; font-size: 15px;">
+                                        <span id="p1-original" style="color: white;">The VivaZen Clinic was inaugurated
+                                            five year ago in Brooklin neighborhood in São Paul, being today a referencc
+                                            in weight lose management.</span>
+                                    </p>
+                                    <p class="block-type-text">Block: Paragraph (P)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- After -->
+                    <div class="detail-box">
+                        <h4 class="detail-title">
+                           <svg width="24" height="24" viewBox="0 0 640 640" fill="#D8F380">
+                                <path d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"></path>
+                            </svg>
+                            After
+                        </h4>
+
+                        <div class="safari-window">
+                            <div class="safari-header">
+                                <div class="safari-dots">
+                                    <div class="dot dot-red"></div>
+                                    <div class="dot dot-yellow"></div>
+                                    <div class="dot dot-green"></div>
+                                </div>
+                                <div class="safari-url">vivazen.com/wp-admin/post.php</div>
+                            </div>
+
+                            <div class="wp-editor-dark">
+                                <div class="wp-sidebar">
+                                    <!-- Plus Circle Filled Icon -->
+                                    <div class="wp-icon" data-tooltip="Add page">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z" />
+                                        </svg>
+                                    </div>
+
+                                    <!-- Add Card Icon -->
+                                    <div class="wp-icon" data-tooltip="Add card">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M14.5 2.5H21V5H14.5V2.5ZM14.5 9H21V11.5H14.5V9ZM14.5 15.5H21V18H14.5V15.5ZM2 5H12.5V7.5H2V5ZM2 11.5H12.5V14H2V11.5ZM2 18H12.5V20.5H2V18Z" />
+                                        </svg>
+                                    </div>
+
+                                    <!-- Cog Icon -->
+                                    <div class="wp-icon" data-tooltip="Configurations">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.22,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.22,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.68 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z" />
+                                        </svg>
+                                    </div>
+
+                                    <!-- HTML Icon -->
+                                    <div class="wp-icon" data-tooltip="Customize HTML">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                            <path
+                                                d="M12,17.56L16.07,16.43L16.62,10.33H9.38L9.2,8.3H16.8L17,6.31H7L7.56,12.32H14.45L14.22,14.9L12,15.5L9.78,14.9L9.64,13.24H7.64L7.93,16.43L12,17.56M4.07,3H19.93L18.5,19.2L12,21L5.5,19.2L4.07,3Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <div class="wp-content-area">
+                                    <div class="wp-block-dark with-left-border">
+                                        <h2 style="font-size: 18px; font-weight: bold; color: white; margin: 0;">
+                                            Professional Weight Management</h2>
+                                        <p style="font-size: 11px; color: #999; margin-top: 8px;">Block: Title (H2)</p>
+                                    </div>
+
+                                    <div class="wp-block-dark" id="content-block">
+                                        <div id="content-text" style="font-size: 15px; color: #ccc;">Content is key.
+                                            Structuring with blocks ensures scalability and improves user experience.
+                                        </div>
+                                        <p style="font-size: 11px; color: #999; margin-top: 8px;">Block: Paragraph (P)
+                                        </p>
+                                    </div>
+
+                                    <!-- Floating animation elements -->
+                                    <div class="floating-block" id="floating-block">The VivaZen Clinic was inaugurated
+                                        five years ago in Brooklin, São Paulo, being today a reference in weight loss
+                                        management.</div>
+                                    <div class="animated-cursor" id="animated-cursor"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metrics-section">
+                    <h4 class="metrics-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2 text-[#D8F380]">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="currentColor"></path>
+                        </svg>
+                        Metrics
+                    </h4>
+                    <div class="metric-row">
+                        <div class="metric-label"><span>Localization Accuracy</span><span
+                                style="color:var(--pyyne-lime)">98%</span></div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="--metric-value:98%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-label"><span>Publishing Speed</span><span
+                                style="color:var(--pyyne-lime)">+45%</span></div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="--metric-value:45%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-label"><span>Error Rate</span><span
+                                style="color:var(--pyyne-lime)">-68%</span></div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="--metric-value:32%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Linha divisória -->
+            <div class="case-divider"></div>
+<br><br>
+            <!-- CASE 3: Chatbot Prototype Development at TW -->
+            <div class="case-study" id="case-3">
+                <h3 class="case-title">Chatbot Prototype<br>Development at TW</h3>
+                <div class="tags-row">
+                    <span class="tag">Figma</span>
+                    <span class="tag">Dialogflow</span>
+                    <span class="tag">HTML/CSS</span>
+                </div>
+                <div class="tags-row">
+                    <span class="tag tag-skill">UX Writing</span>
+                    <span class="tag tag-skill">Conversation Design</span>
+                    <span class="tag tag-skill">Localization QA</span>
+                </div>
+                <div class="challenge-solution-row">
+                    <div class="detail-box">
+                        <h4 class="detail-title">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2 text-[#2CB6DD]">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="#D8F380"></path>
+                            </svg>
+                            The Challenge
+                        </h4>
+                        <div class="detail-content">
+                            <p>The client's chat assistant returned unclear responses and used inconsistent tone across
+                                decision branches, producing poor user completion rates.</p>
+                        </div>
+                    </div>
+                    <div class="detail-box">
+                      <h4 class="detail-title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2 text-[#2CB6DD]">
+                                <path d="M5.99 6.91c.39.38 1.03.38 1.41 0a.996.996 0 000-1.41l-.71-.71A.996.996 0 105.28 6.2l.71.71zM5 12c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1s.45 1 1 1h1c.55 0 1-.45 1-1zm16 1c.55 0 1-.45 1-1s-.45-1-1-1h-1c-.55 0-1 .45-1 1s.45 1 1 1h1zm-2.99-6.09l.71-.71a.996.996 0 10-1.41-1.41l-.71.71a.996.996 0 101.41 1.41zM15 15.98c1.21-.92 2-2.35 2-3.98 0-3.11-2.84-5.56-6.07-4.88-1.94.4-3.48 2-3.84 3.95-.37 2.01.48 3.83 1.91 4.91h6zM12 5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1s-1 .45-1 1v1c0 .55.44 1 1 1zM12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm-2.25-5c-.412 0-.75.45-.75 1s.338 1 .75 1h4.5c.412 0 .75-.45.75-1s-.338-1-.75-1h-4.5z" fill="#D8F380"></path>
+                            </svg>
+                            The Solution
+                        </h4>
+                        <div class="detail-content">
+                            <p>Designed conversation flows, microcopy guidelines for each intent, and prototype UI.
+                                Implemented iterative LQA cycles with behavioral prompts to improve response clarity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="challenge-after-row">
+                    <div class="detail-box">
+                        <h4 class="detail-title">
+                            <svg width="24" height="24" viewBox="0 0 640 640" fill="#D8F380">
+                                <path d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z"></path>
+                            </svg>
+                            Before
+                        </h4>
+                        <div class="safari-window">
+                            <div class="safari-header">
+                                <div class="safari-dots">
+                                    <div class="dot dot-red"></div>
+                                    <div class="dot dot-yellow"></div>
+                                    <div class="dot dot-green"></div>
+                                </div>
+                                <div class="safari-url">tw.example.com/chat/prototype</div>
+                            </div>
+                            <div class="gutenberg-editor">
+                                <div class="wp-block">
+                                    <h2 style="font-size:18px;color:#fff;margin:0">Chat — Prototype</h2>
+                                    <p class="block-type-text">Widget: Chat</p>
+                                </div>
+                                <div class="wp-block" id="cas3-chat-before"
+                                    style="font-size:15px;color:#ccc;line-height:1.4">
+                                    <div class="user-dialog chat-message" id="user-msg-1">User: I need help</div>
+                                    <div class="bot-dialog chat-message" id="bot-msg-1">Bot: Ok. We have solutions. <span style="color:var(--pyyne-lime);cursor:pointer;">click here</span></div>
+                                    <div class="timeout-message" id="timeout-msg">Delay: 4.2s • Timeout issues</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-box">
+                        <h4 class="detail-title">
+                         <svg width="24" height="24" viewBox="0 0 640 640" fill="#D8F380">
+                                <path d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"></path>
+                            </svg>
+                            After
+                        </h4>
+                        <div class="safari-window">
+                            <div class="safari-header">
+                                <div class="safari-dots">
+                                    <div class="dot dot-red"></div>
+                                    <div class="dot dot-yellow"></div>
+                                    <div class="dot dot-green"></div>
+                                </div>
+                                <div class="safari-url">tw.example.com/chat/prototype</div>
+                            </div>
+                            <div class="wp-editor-dark chatbot-after"><br>
+                                                                <div class="wp-content-area">
+                                    <div class="wp-block-dark with-left-border chatbot-header">
+                                        <h2 style="font-size:18px;color:#fff;margin:0">TW Assistant – Flow</h2>
+                                        <p style="font-size:11px;color:#999;margin-top:8px">Widget: Chat</p>
+                                    </div><br>
+                                    <div class="wp-block-dark chatbot-content" id="cas3-chat-after">
+                                        <div class="chatbot-container" id="after-chatbot">
+                                            <div id="chatbot-content">
+                                                <!-- Step 1: Initial Choice -->
+                                                <div id="step1" class="chatbot-step">
+                                                    <div class="chatbot-message bot-message">
+                                                       What kind of information are you looking for?
+                                                    </div><br>
+                                                    <div class="chatbot-buttons">
+                                                        <button class="chatbot-btn" onclick="goToStep('step2_tech')">Technical Insights</button>
+                                                        <button class="chatbot-btn" onclick="goToStep('step2_business')">Business Metrics</button>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Step 2: Technical Path -->
+                                                <div id="step2_tech" class="chatbot-step hidden">
+                                                    <div class="chatbot-message bot-message">
+                                                        You chose Technical. Are you focused on <strong>Infrastructure</strong> or <strong>Front-end UX</strong>?
+                                                    </div>
+                                                  <br>  <div class="chatbot-buttons">
+                                                        <button class="chatbot-btn" onclick="goToStep('step3_infra')">Infrastructure</button>
+                                                        <button class="chatbot-btn" onclick="goToStep('step3_ux')">Front-end UX</button>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Step 2: Business Path -->
+                                                <div id="step2_business" class="chatbot-step hidden">
+                                                    <div class="chatbot-message bot-message">
+                                                        <strong></strong> You chose Business. Are you focused on <strong>TOFU</strong> or <strong>BOFU</strong>?
+                                                    </div>
+                                                   <br> <div class="chatbot-buttons">
+                                                        <button class="chatbot-btn" onclick="goToStep('step3_acq')">Acquisition</button>
+                                                        <button class="chatbot-btn" onclick="goToStep('step3_ret')">Retention</button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Step 3: Results -->
+                                                <div id="step3_infra" class="chatbot-step hidden">
+                                                    <div class="chatbot-message bot-message">
+                                                        <strong>Result:</strong> I focus on the performance of <strong>caching and API </strong> on content delivery.
+                                                    </div>
+                                                   <button class="restart-btn" onclick="goToStep('step1')">Restart</button>
+                                                </div>
+                                                <div id="step3_ux" class="chatbot-step hidden">
+                                                    <div class="chatbot-message bot-message">
+                                                        <strong>Result</strong>:My goal is to reduce effort by optimizing field and button with precision  <strong></strong>.
+                                                    </div>
+                                                    <button class="restart-btn" onclick="goToStep('step1')">Restart</button>
+                                                </div>
+                                                <div id="step3_acq" class="chatbot-step hidden">
+                                                    <div class="chatbot-message bot-message">
+                                                        <strong>Result</strong>: I generate content designed to capture search queries for <strong>traffic ROI</strong>.
+                                                    </div>
+                                                    <button class="restart-btn" onclick="goToStep('step1')">Restart</button>
+                                                </div>
+                                                <div id="step3_ret" class="chatbot-step hidden">
+                                                    <div class="chatbot-message bot-message">
+                                                        <strong>Result</strong>: My content supports product to better user satisfaction.
+                                                    </div>
+                                                    <button class="restart-btn" onclick="goToStep('step1')">Restart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+<!-- Interactive message -->
+                        <div class="interactive-message">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                <path d="M224 104C224 81.9 241.9 64 264 64C286.1 64 304 81.9 304 104L304 252.2C312.5 244.6 323.7 240 336 240C356.6 240 374.2 253 381 271.2C389.8 261.9 402.2 256 416 256C441.3 256 462 275.5 463.9 300.3C472.4 292.6 483.7 288 496 288C522.5 288 544 309.5 544 336L544 448C544 518.7 486.7 576 416 576L330.7 576C325.7 576 320.8 575.7 316 575C260.7 569.4 209.8 541 176 496L104 400C90.7 382.3 94.3 357.3 112 344C129.7 330.7 154.7 334.3 168 352L224 426.7L224 104zM336 368C336 359.2 328.8 352 320 352C311.2 352 304 359.2 304 368L304 464C304 472.8 311.2 480 320 480C328.8 480 336 472.8 336 464L336 368zM384 352C375.2 352 368 359.2 368 368L368 464C368 472.8 375.2 480 384 480C392.8 480 400 472.8 400 464L400 368C400 359.2 392.8 352 384 352zM464 368C464 359.2 456.8 352 448 352C439.2 352 432 359.2 432 368L432 464C432 472.8 439.2 480 448 480C456.8 480 464 472.8 464 464L464 368z" fill="#D8F380"/>
+                            </svg>
+                            <span>Click the buttons to interact with the prototype</span>
+                        </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="metrics-section" style="margin-bottom:-340px;">
+                    <h4 class="metrics-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2 text-[#D8F380]">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="currentColor"></path>
+                        </svg>
+                        Metrics
+                    </h4>
+                    <div class="metric-row">
+                        <div class="metric-label"><span>Task Completion</span><span
+                                style="color:var(--pyyne-lime)">+42%</span></div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="--metric-value:42%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-label"><span>User Satisfaction</span><span
+                                style="color:var(--pyyne-lime)">4.8/5</span></div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="--metric-value:96%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-label"><span>Fallback Rate</span><span
+                                style="color:var(--pyyne-lime)">-75%</span></div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="--metric-value:25%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Linha divisória -->
+    <section class="case-studies-section">
+        <div class="container">
+            <div class="case-divider"></div>
+        </div>
+    </section>
+
+ <!-- CASE 4: Family Suite Localization -->
+           <section class="case-studies-section">
+        <div class="container" style="margin-top:-250px;">
+  <div class="case-study" id="case-4">
+                <h3 class="case-title">Internationalization (I18N)<br>for a Software Family</h3>
+                <div class="tags-row">
+                    <span class="tag">Client Suite</span>
+                    <span class="tag">MemoQ</span>
+                    <span class="tag">Trello</span>
+                </div>
+                <div class="tags-row">
+                    <span class="tag tag-skill">Localization</span>
+                    <span class="tag tag-skill">UI/UX Consistency</span>
+                    <span class="tag tag-skill">Beta Testing</span>
+                </div>
+
+                <div class="challenge-solution-row" style="margin-top: 60px;">
+                    <div class="detail-box">
+                        <h4 class="detail-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2 text-[#2CB6DD]">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="#D8F380"></path>
+                            </svg>
+                            The Challenge
+                        </h4>
+                        <div class="detail-content">
+                            <p>Broken UX/UI strings across global builds causing bugs and friction. Inconsistent terminology and unclear UI elements creating confusion for international users.</p>
+                        </div>
+                    </div>
+                    <div class="detail-box">
+                        <h4 class="detail-title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2 text-[#2CB6DD]">
+                                <path d="M5.99 6.91c.39.38 1.03.38 1.41 0a.996.996 0 000-1.41l-.71-.71A.996.996 0 105.28 6.2l.71.71zM5 12c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1s.45 1 1 1h1c.55 0 1-.45 1-1zm16 1c.55 0 1-.45 1-1s-.45-1-1-1h-1c-.55 0-1 .45-1 1s.45 1 1 1h1zm-2.99-6.09l.71-.71a.996.996 0 10-1.41-1.41l-.71.71a.996.996 0 101.41 1.41zM15 15.98c1.21-.92 2-2.35 2-3.98 0-3.11-2.84-5.56-6.07-4.88-1.94.4-3.48 2-3.84 3.95-.37 2.01.48 3.83 1.91 4.91h6zM12 5c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1s-1 .45-1 1v1c0 .55.44 1 1 1zM12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm-2.25-5c-.412 0-.75.45-.75 1s.338 1 .75 1h4.5c.412 0 .75-.45.75-1s-.338-1-.75-1h-4.5z" fill="#D8F380"></path>
+                            </svg>
+                            The Solution
+                        </h4>
+                        <div class="detail-content">
+                            <p>Localized 50K+ words for menus, buttons, tooltips, and FAQs. Conducted UX testing to identify functional, linguistic, and usability issues. Implemented a visual feedback system to streamline resolution.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Before: UI inconsistency -->
+ <div class="challenge-after-row" style="margin-top: 60px;">
+                                      <div class="detail-box">
+                        <h4 class="detail-title">
+                           <svg width="24" height="24" viewBox="0 0 640 640" fill="#D8F380">
+                                <path d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z"></path>
+                            </svg>
+                            Before
+                        </h4>
+                        <div class="safari-window">
+                            <div class="safari-header">
+                                <div class="safari-dots">
+                                    <div class="dot dot-red"></div>
+                                    <div class="dot dot-yellow"></div>
+                                    <div class="dot dot-green"></div>
+                                </div>
+                                <div class="safari-url">reports.prod.system/v2-data</div>
+                            </div>
+                            <div class="gutenberg-editor" style="background: #161b22; position: relative; overflow: hidden;">
+                                <h1 style="color: #ff5e57; font-size: 20px; font-weight: bold; margin-bottom: 16px; text-align: center;">#!404_not_found/789></h1>
+                                
+                                <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                                    <div style="border: 4px solid rgba(255, 255, 255, 0.1); border-top: 4px solid var(--pyyne-lime); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>
+                                </div>
+                                
+                                <button class="chaotic-button" style="position: absolute; top: 15%; left: 10%; padding: 6px 10px; border-radius: 6px; font-weight: 500; font-size: 12px; color: #ff5e57; background-color: #1c1d21; border: 1px solid #ff5e57; cursor: pointer;">return();</button>
+                                <button class="chaotic-button" style="position: absolute; top: 25%; right: 5%; padding: 6px 10px; border-radius: 6px; font-weight: 500; font-size: 12px; color: #ff5e57; background-color: #1c1d21; border: 1px solid #ff5e57; cursor: pointer;">Confirm</button>
+                                <button class="chaotic-button" style="position: absolute; top: 50%; left: 20%; padding: 6px 10px; border-radius: 6px; font-weight: 500; font-size: 12px; color: #ff5e57; background-color: #1c1d21; border: 1px solid #ff5e57; cursor: pointer;">cancelProcess()</button>
+                                <button class="chaotic-button" style="position: absolute; top: 70%; right: 15%; padding: 6px 10px; border-radius: 6px; font-weight: 500; font-size: 12px; color: #ff5e57; background-color: #1c1d21; border: 1px solid #ff5e57; cursor: pointer;">Return</button>
+                                <button class="chaotic-button" style="position: absolute; top: 85%; left: 40%; padding: 6px 10px; border-radius: 6px; font-weight: 500; font-size: 12px; color: #ff5e57; background-color: #1c1d21; border: 1px solid #ff5e57; cursor: pointer;">return</button>
+                                <button class="chaotic-button" style="position: absolute; top: 35%; left: 5%; padding: 6px 10px; border-radius: 6px; font-weight: 500; font-size: 12px; color: #ff5e57; background-color: #1c1d21; border: 1px solid #ff5e57; cursor: pointer;">Go Back</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- After: Localized UI -->
+                    <div class="detail-box">
+                        <h4 class="detail-title">
+                            <svg width="24" height="24" viewBox="0 0 640 640" fill="#D8F380">
+                                <path d="M530.8 134.1C545.1 144.5 548.3 164.5 537.9 178.8L281.9 530.8C276.4 538.4 267.9 543.1 258.5 543.9C249.1 544.7 240 541.2 233.4 534.6L105.4 406.6C92.9 394.1 92.9 373.8 105.4 361.3C117.9 348.8 138.2 348.8 150.7 361.3L252.2 462.8L486.2 141.1C496.6 126.8 516.6 123.6 530.9 134z"></path>
+                            </svg>
+                            After
+                        </h4>
+                        <div class="safari-window">
+                            <div class="safari-header">
+                                <div class="safari-dots">
+                                    <div class="dot dot-red"></div>
+                                    <div class="dot dot-yellow"></div>
+                                    <div class="dot dot-green"></div>
+                                </div>
+                                <div class="safari-url">beta.site.com/test-module</div>
+                            </div>
+                            <div class="gutenberg-editor" style="background: #161b22; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                                <h1 style="color: white; font-size: 20px; font-weight: bold; margin-bottom: 8px;">Beta Test Module V0.9.1</h1>
+                                <p style="color: #8b949e; font-size: 14px; margin-bottom: 20px;">Identify potential UX flaws.</p>
+                                
+                                <div id="process-button-case4" style="padding: 8px 16px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; position: relative; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); white-space: nowrap; background-color: #1c1d21; transition: background-color 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);">
+                                    <span id="initial-text-case4" style="color: var(--pyyne-lime); transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative;">
+                                        &lt;/134&gt;_Execute_Process_Final&lt;/456&gt;
+                                    </span>
+                                    <span id="final-text-case4" style="color: #000000; opacity: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);">
+                                        Cancel Process
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- UX tip -->
+                        <div class="interactive-message">
+                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                                <path d="M224 104C224 81.9 241.9 64 264 64C286.1 64 304 81.9 304 104L304 252.2C312.5 244.6 323.7 240 336 240C356.6 240 374.2 253 381 271.2C389.8 261.9 402.2 256 416 256C441.3 256 462 275.5 463.9 300.3C472.4 292.6 483.7 288 496 288C522.5 288 544 309.5 544 336L544 448C544 518.7 486.7 576 416 576L330.7 576C325.7 576 320.8 575.7 316 575C260.7 569.4 209.8 541 176 496L104 400C90.7 382.3 94.3 357.3 112 344C129.7 330.7 154.7 334.3 168 352L224 426.7L224 104zM336 368C336 359.2 328.8 352 320 352C311.2 352 304 359.2 304 368L304 464C304 472.8 311.2 480 320 480C328.8 480 336 472.8 336 464L336 368zM384 352C375.2 352 368 359.2 368 368L368 464C368 472.8 375.2 480 384 480C392.8 480 400 472.8 400 464L400 368C400 359.2 392.8 352 384 352zM464 368C464 359.2 456.8 352 448 352C439.2 352 432 359.2 432 368L432 464C432 472.8 439.2 480 448 480C456.8 480 464 472.8 464 464L464 368z" fill="#D8F380"></path>
+                            </svg>
+                            <span>Click on or hover over the button to interact with the prototype</span></p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="metrics-section" style="margin-bottom:-150px;">
+                    <h4 class="metrics-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="mr-2 text-[#D8F380]">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="currentColor"></path>
+                        </svg>
+                        Metrics
+                    </h4>
+                    <div class="metric-row">
+                        <div class="metric-label"><span>Localization Accuracy</span><span style="color:var(--pyyne-lime)">98%</span></div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="--metric-value:98%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-label"><span>Issues Logged</span><span style="color:var(--pyyne-lime)">150+</span></div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="--metric-value:100%"></div>
+                        </div>
+                    </div>
+                    <div class="metric-row">
+                        <div class="metric-label"><span>Adoption Rate</span><span style="color:var(--pyyne-lime)">Company-Wide</span></div>
+                        <div class="metric-bar">
+                            <div class="metric-fill" style="--metric-value:100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-white fade-in-section">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="section-title">Experience</h2>
+            
+            <div class="experience-card">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-[#d8f380]">Content Editor</h3>
+                        <p class="text-gray-600"><a href="https://teamworker.com.br"><u>TW' Content Business</u></a> | <a href="https://claro.com.br"><u>Claro</u></a></p>
+                    </div>
+                    <span class="text-sm text-gray-500">2020 - Present</span>
+                </div>
+                <p class="text-gray-700 mb-4">
+  Migrated and validated 50K+ content items into CMS templates with 90% accuracy rate, ensuring precision for flawless publication.</p>
+ <p class="text-gray-700 mb-4">
+
+                    Developed comprehensive style guides that achieved 95% formatting consistency across all B2B and B2C content platforms</p>
+ <p class="text-gray-700 mb-4">
+Engineered SEO-optimized content for 15K+ product pages, increasing organic visibility by 25% through speech analytics tools</p>
+
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag">AI/LLM Integration</span>
+                    <span class="tag">Content Strategy</span>
+                    <span class="tag">Technical Writing</span>
+                    <span class="tag">Cross-functional Leadership</span>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-[#d8f380]">Content Systems Architect</h3>
+                        <p class="text-gray-600"><a href="https://www.proz.com/translator/2872358"><u>Freelance | Self-employed</u></a></p>
+                    </div>
+                    <span class="text-sm text-gray-500">2020 - 2022</span>
+                </div>
+                <p class="text-gray-700 mb-4">
+                   Conducted beta testing for family software suite, identifying critical UX issues and improving product stability.</p>
+                     <p class="text-gray-700 mb-4">
+Enhanced LQA workflows for streaming platforms, reducing quality assurance cycles by 45% while maintaining 98% content accuracy</p>
+ <p class="text-gray-700 mb-4">
+Established accessibility compliance frameworks by metatagging and close captioning 50+ assets for SDH and HoH audiences
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag">WordPress Engineering</span>
+                    <span class="tag">SEO Strategy</span>
+                    <span class="tag">Accessibility Compliance</span>
+                    <span class="tag">Global Scaling</span>
+                </div>
+            </div>
+
+            <div class="experience-card">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-[#d8f380]">QA Editor & Translator</h3>
+                        <p class="text-gray-600"><a href="https://tikinet.com.br/"><u>Tikinet LTDA</u></a></p>
+                    </div>
+                    <span class="text-sm text-gray-500">2018 - 2020</span>
+                </div>
+                <p class="text-gray-700 mb-4">
+                   Edited the Federal Council of Medicine's biweekly newsletter, achieving 80% accuracy in medical terminology alignment</p>
+ <p class="text-gray-700 mb-4">
+                  Localized academic health science articles using Memsource, maintaining 75% technical term approval rate for high-impact journals
+                </p>
+<p class="text-gray-700 mb-4">Formatted 200+ academic publications using InDesign, achieving 98% layout consistency across university press requirements</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag">Localization Engineering</span>
+                    <span class="tag">QA Automation</span>
+                    <span class="tag">UI/UX Testing</span>
+                    <span class="tag">International Collaboration</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 bg-white fade-in-section">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="section-title">Education</h2>
+            
+            
+<div class="experience-card">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-[#d8f380]">BA in English and Portuguese</h3>
+                        <p class="text-gray-600">Universidade de São Paulo (USP)</p>
+                    </div>
+                    <span class="text-sm text-gray-500">2015 - 2020</span>
+                </div>
+                <p class="text-gray-700 mb-4">
+                   Specialized in computational linguistics, UX writing, and discourse analysis, with a focus on content engineering, information architecture for scalable systems, and research in AI-driven content optimization and cross-platform integration methodologies.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag">Information Architecture</span>
+                    <span class="tag">Systems Design</span>
+                    <span class="tag">Content Engineering</span>
+                    <span class="tag">AI Research</span>
+                </div>
+            </div>
+<div class="experience-card">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-[#d8f380]">Associate Degree in IT</h3>
+                        <p class="text-gray-600">Marechal Rondon School (FMR)</p>
+                    </div>
+                    <span class="text-sm text-gray-500">2007 - 2009</span>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    Foundation in computational linguistics and cross-cultural communication. Natural language processing 
+                    applications in technical documentation and user experience optimization.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="tag">Computational Linguistics</span>
+                    <span class="tag">NLP</span>
+                    <span class="tag">Technical Communication</span>
+                    <span class="tag">UX Research</span>
+                </div></div>
+            
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section id="languages" class="py-20 bg-white fade-in-section">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="section-title">Languages</h2>
+            
+            <div class="languages-grid">
+                <div class="language-chart-container">
+                    <div class="language-chart">
+                        <canvas id="portugueseChart" width="120" height="120"></canvas>
+                    </div>
+                    <div class="language-name">Brazilian Portuguese</div>
+                    <div class="language-level">100% (Native)</div>
+                </div>
+                
+                <div class="language-chart-container">
+                    <div class="language-chart">
+                        <canvas id="englishChart" width="120" height="120"></canvas>
+                    </div>
+                    <div class="language-name">English</div>
+                    <div class="language-level">100% (Bilingual - Full Professional)</div>
+                </div>
+                
+                <div class="language-chart-container">
+                    <div class="language-chart">
+                        <canvas id="frenchChart" width="120" height="120"></canvas>
+                    </div>
+                    <div class="language-name">French</div>
+                    <div class="language-level">70% (B2 - Advanced)</div>
+                </div>
+                
+                <div class="language-chart-container">
+                    <div class="language-chart">
+                        <canvas id="spanishChart" width="120" height="120"></canvas>
+                    </div>
+                    <div class="language-name">Spanish</div>
+                    <div class="language-level">60% (B1 - Intermediate)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 bg-white fade-in-section">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="section-title">Certifications</h2>
+            
+            <div class="experience-card">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-[#d8f380]">Portuguese Grammar and Editorial Standards</h3>
+
+
+
+
+
+                        <p class="text-gray-600 ">UNESP – Universidade Estadual Paulista</p>
+                    </div>
+                    <span class="text-sm text-gray-500">2023</span>
+                </div>
+                <p class="text-gray-500 mb-4">
+                    Specialized training in on-page optimization, keyword research, and content strategy, enabling effective evaluation and improvement of multilingual digital content.
+                </p>
+            </div>
+
+            <div class="experience-card">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-[#d8f380]">SEO Fundamentals Certification</h3>
+                        <p class="text-gray-600">SEMrush Academy</p>
+                    </div>
+                    <span class="text-sm text-gray-500">2025</span>
+                </div>
+                <p class="text-gray-500 mb-4">
+                    Specialized training in on-page optimization, keyword research, and content strategy, enabling effective evaluation and improvement of multilingual digital content.
+                </p>
+            </div>
+
+            <div class="experience-card">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold text-[#d8f380]">Python for Everybody</h3>
+
+
+
+                        <p class="text-gray-500 mb4">University of Michigan – Coursera</p>
+                    </div>
+                    <span class="text-sm text-gray-500">2025</span>
+                </div>
+                <p class="text-gray-700 mb-4">
+                    Comprehensive certification covering Python programming, data structures, APIs, and applied data analysis for language technologies and AI-driven workflows.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Let's Talk Section -->
+    <section id="contact" class="lets-talk-section">
+        <div class="max-w-6xl mx-2 px-6">
+            <div class="lets-talk-content">
+                <div>
+                    <h2 class="lets-talk-title">
+                        Ready to scale your content engineering?
+                    </h2>
+                    <p class="lets-talk-cta">
+                        Get in touch →
+                    </p>
+                </div>
+                
+                <div class="contact-list-container">
+                    <ul class="contact-list-right">
+                        <li>
+                            <a href="mailto:ariane.etimo@gmail.com" class="contact-item">
+                                EMAIL
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://linkedin.com/in/ariane-lesnyak" class="contact-item" target="_blank">
+                                LINKEDIN
+                            </a>
+                        </li>
+                        <li>
+                          <section id="cv">
+			<a href="https://alc-etimo.github.io/portfolio/" class="contact-item">
+                                CV
+                            </a></section>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="max-w-6xl mx-auto px-6">
+            <p class="footer-text">COPYRIGHT © 2025 ARIANE LESNYAK. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Individual Language Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to create individual language charts
+            function createLanguageChart(canvasId, percentage, language) {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                const remaining = 100 - percentage;
+                
+                const mainColor = '#D8F380';
+                
+                return new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [language, 'Remaining'],
+                        datasets: [{
+                            data: [percentage, remaining],
+                            backgroundColor: [mainColor, '#f3f4f6'],
+                            borderWidth: 0,
+                            cutout: '70%'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        if (context.dataIndex === 0) {
+                                            return language + ': ' + percentage + '%';
+                                        }
+                                        return null;
+                                    }
+                                }
+                            }
+                        },
+                        animation: {
+                            animateRotate: true,
+                            duration: 2000
+                        }
+                    }
+                });
+            }
+            
+            // Create charts for each language
+            createLanguageChart('portugueseChart', 100, 'Brazilian Portuguese');
+            createLanguageChart('englishChart', 100, 'English');
+            createLanguageChart('frenchChart', 70, 'French');
+            createLanguageChart('spanishChart', 60, 'Spanish');
+
+            // Fade-in animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+     <script>
+        // Accordion functionality for Case 1
+        document.addEventListener('DOMContentLoaded', function () {
+            // Case 1 accordion
+            const accItems = document.querySelectorAll('.acc-item');
+            accItems.forEach(item => {
+                const head = item.querySelector('.acc-head');
+                const body = item.querySelector('.acc-body');
+
+                head.addEventListener('click', () => {
+                    const isOpen = body.style.maxHeight && body.style.maxHeight !== '0px';
+                    // Close all
+                    accItems.forEach(otherItem => {
+                        otherItem.querySelector('.acc-body').style.maxHeight = '0';
+                    });
+                    // Open if was closed
+                    if (!isOpen) {
+                        body.style.maxHeight = body.scrollHeight + 'px';
+                    }
+                });
+            });
+
+            // Case 3 - Chatbot Before Animation
+            function startChatbotBeforeAnimation() {
+                const userMsg1 = document.getElementById('user-msg-1');
+                const botMsg1 = document.getElementById('bot-msg-1');
+                const timeoutMsg = document.getElementById('timeout-msg');
+
+                // Reset all messages
+                userMsg1.classList.remove('visible');
+                botMsg1.classList.remove('visible');
+                timeoutMsg.classList.remove('visible');
+
+                // Animation sequence
+                setTimeout(() => {
+                    userMsg1.classList.add('visible');
+                }, 500);
+
+                setTimeout(() => {
+                    botMsg1.classList.add('visible');
+                }, 1500);
+
+                setTimeout(() => {
+                    timeoutMsg.classList.add('visible');
+                }, 2500); // Reduced from 3000
+
+                setTimeout(() => {
+                    timeoutMsg.classList.remove('visible');
+                }, 5500); // Reduced duration
+
+                // Restart animation
+                setTimeout(startChatbotBeforeAnimation, 7000); // Faster restart
+            }
+
+            // Start chatbot before animation
+            startChatbotBeforeAnimation();
+        });
+    </script>
+    
+    <script>
+        // Before Animation
+        const EDITS = [
+            {
+                target: 'post-title',
+                original: 'Enhancing QA with Generative AI',
+                final: 'Content Localization and Proofreading',
+                delay: 1000,
+                reset: true,
+            },
+            {
+                target: 'paragraph-1',
+                original: 'The  VivaZen',
+                replaced: 'The VivaZen',
+                delay: 2500,
+            },
+            {
+                target: 'paragraph-1',
+                original: 'five year ago',
+                replaced: 'five years ago',
+                delay: 4000,
+            },
+            {
+                target: 'paragraph-1',
+                original: 'São Paul,',
+                replaced: 'São Paulo,',
+                delay: 5500,
+            },
+            {
+                target: 'paragraph-1',
+                original: 'referencc',
+                replaced: 'reference',
+                delay: 7000,
+            },
+            {
+                target: 'paragraph-1',
+                original: 'weight lose',
+                replaced: 'weight loss',
+                delay: 8500,
+            }
+        ];
+
+        const originalContent = {
+            'post-title': 'Enhancing QA with Generative AI',
+            'paragraph-1': 'The  VivaZen  Clinic was inaugurated five year ago in Brooklin neighborhood in São Paul, being today a referencc in weight lose management.'
+        };
+
+        let editIndex = 0;
+
+        function resetContent() {
+            const titleEl = document.getElementById('post-title');
+            const paraEl = document.getElementById('paragraph-1');
+            if (titleEl) titleEl.querySelector('.original-title').textContent = originalContent['post-title'];
+            if (paraEl) paraEl.innerHTML = `<span id="p1-original" style="color: white;">${originalContent['paragraph-1']}</span>`;
+        }
+
+        function applyEdit(targetId, originalText, replacementText) {
+            const targetElement = document.getElementById(targetId);
+            if (!targetElement) return;
+
+            const targetInnerElement = targetId === 'post-title' ? targetElement.querySelector('.original-title') : targetElement;
+            if (!targetInnerElement) return;
+
+            const currentContent = targetInnerElement.innerHTML;
+            const escapedOriginal = originalText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+            const regex = new RegExp(escapedOriginal, 'g');
+            
+            if (!regex.test(currentContent)) return;
+
+            const deletedMarkup = `<span class="edit-deleted">${originalText}</span>`;
+            const insertedMarkup = `<span class="edit-inserted">${replacementText}</span>`;
+            
+            targetInnerElement.innerHTML = currentContent.replace(regex, deletedMarkup + insertedMarkup);
+            targetInnerElement.offsetHeight;
+
+            setTimeout(() => {
+                targetInnerElement.innerHTML = targetInnerElement.innerHTML.replace(deletedMarkup, '');
+                targetInnerElement.innerHTML = targetInnerElement.innerHTML.replace(insertedMarkup, `<span class="edit-final">${replacementText}</span>`);
+
+                setTimeout(() => {
+                    targetInnerElement.querySelectorAll('.edit-final').forEach(span => span.outerHTML = span.textContent);
+                }, 1000);
+            }, 800);
+        }
+
+        function startEditingSequence() {
+            const runEdit = () => {
+                if (editIndex >= EDITS.length) {
+                    editIndex = 0;
+                    setTimeout(resetContent, 1000);
+                    setTimeout(startEditingSequence, 2000);
+                    return;
+                }
+
+                const edit = EDITS[editIndex];
+                if (edit.reset) resetContent();
+                
+                applyEdit(edit.target, edit.original, edit.final || edit.replaced);
+                editIndex++;
+                
+                const nextDelay = EDITS[editIndex] ? EDITS[editIndex].delay - EDITS[editIndex-1].delay : 2000;
+                setTimeout(runEdit, nextDelay);
+            };
+            runEdit();
+        }
+
+        // Automatic Floating Animation
+        function startFloatingAnimation() {
+    const floatingBlock = document.getElementById('floating-block');
+    const animatedCursor = document.getElementById('animated-cursor');
+    const contentBlock = document.getElementById('content-block');
+    const contentText = document.getElementById('content-text');
+    const editorArea = document.querySelector('.wp-content-area');
+
+    if (!floatingBlock || !contentBlock) return;
+
+    // Reset positions
+    floatingBlock.style.top = '10px';
+    floatingBlock.style.left = '30px';
+    animatedCursor.style.top = '20px';
+    animatedCursor.style.left = '40px';
+
+    // Calculate target position (center of content block)
+    const targetRect = contentBlock.getBoundingClientRect();
+    const editorRect = editorArea.getBoundingClientRect();
+    
+    const targetX = targetRect.left - editorRect.left + targetRect.width / 2 - floatingBlock.offsetWidth / 2;
+    const targetY = targetRect.top - editorRect.top + targetRect.height / 2 - floatingBlock.offsetHeight / 2;
+
+    // Animation sequence
+    setTimeout(() => {
+        // Step 1: Show floating block
+        floatingBlock.classList.add('visible');
+        
+        setTimeout(() => {
+            // Step 2: Start moving animation
+            floatingBlock.classList.add('moving');
+            animatedCursor.classList.add('moving');
+            
+            // Move both elements to target
+            floatingBlock.style.left = targetX + 'px';
+            floatingBlock.style.top = targetY + 'px';
+            
+            animatedCursor.style.left = (targetX + floatingBlock.offsetWidth / 2 - 10) + 'px';
+            animatedCursor.style.top = (targetY + floatingBlock.offsetHeight / 2 - 10) + 'px';
+
+            setTimeout(() => {
+                // Step 3: Highlight content block and fade out original content
+                contentBlock.classList.add('wp-block-target');
+                contentText.classList.add('content-fade-out');
+                
+                setTimeout(() => {
+                    // Step 4: Replace content and fade out floating elements
+                    contentText.textContent = floatingBlock.textContent;
+                    contentText.classList.remove('content-fade-out');
+                    contentText.classList.add('new-content-pulse');
+                    
+                    // Remove green border and add left border
+                    contentBlock.classList.remove('wp-block-target');
+                    contentBlock.classList.add('with-left-border');
+                    
+                    floatingBlock.classList.add('fading');
+                    animatedCursor.classList.remove('moving');
+                    animatedCursor.classList.add('hidden');
+                    
+                    setTimeout(() => {
+                        // Step 5: Remove floating elements
+                        floatingBlock.classList.remove('visible', 'moving', 'fading');
+                        
+                        // Reset positions for next animation
+                        floatingBlock.style.top = '10px';
+                        floatingBlock.style.left = '30px';
+                        
+                        // Remove pulsing animation and set final white color
+                        setTimeout(() => {
+                            contentText.classList.remove('new-content-pulse');
+                            contentText.classList.add('content-final');
+                        }, 1500);
+                        
+                        // CORREÇÃO: Reset do texto antes de reiniciar a animação
+                        setTimeout(() => {
+                            // Reset do texto para o conteúdo original
+                            contentText.textContent = "Content is key. Structuring with blocks ensures scalability and improves user experience.";
+                            contentText.classList.remove('content-final');
+                            contentBlock.classList.remove('with-left-border');
+                            
+                            // Restart animation
+                            startFloatingAnimation();
+                        }, 4000);
+                    }, 300);
+                }, 300);
+            }, 1500);
+        }, 300);
+    }, 500);
+}
+
+        // Chatbot Navigation Function
+        function goToStep(nextStepId) {
+            const container = document.getElementById('chatbot-content');
+            
+            // Hide all current steps (including 'step1')
+            Array.from(container.children).forEach(child => {
+                child.classList.add('hidden');
+            });
+            
+            // Show the next step
+            const nextStep = document.getElementById(nextStepId);
+            if (nextStep) {
+                nextStep.classList.remove('hidden');
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start the before editing animation
+            setTimeout(() => {
+                resetContent();
+                startEditingSequence();
+            }, 1000);
+
+            // Start the floating animation
+            setTimeout(startFloatingAnimation, 2000);
+
+            // Case 4 button hover animation
+            const processButtonCase4 = document.getElementById('process-button-case4');
+            const initialTextCase4 = document.getElementById('initial-text-case4');
+            const finalTextCase4 = document.getElementById('final-text-case4');
+
+            if (processButtonCase4) {
+                processButtonCase4.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#D8F380';
+                    initialTextCase4.style.opacity = '0';
+                    finalTextCase4.style.opacity = '1';
+                });
+
+                processButtonCase4.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '#1c1d21';
+                    initialTextCase4.style.opacity = '1';
+                    finalTextCase4.style.opacity = '0';
+                });
+            }
+        });
+    </script>
+
+
+</body>
+</html>
