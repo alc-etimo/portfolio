@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLICITAÇÃO URGENTE DE ANTECIPAÇÃO DE DIPLOMA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .document-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border: 1px solid #ddd;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #004a8d;
+            margin-bottom: 30px;
+        }
+        
+        .date-header {
+            text-align: center;
+            color: #666;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+        
+        .logos-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 20px 0;
+        }
+        
+        .logo-box {
+            width: 180px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #666;
+            background-color: #ffffff;
+        }
+        
+        .title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #004a8d;
+            text-align: center;
+            margin: 20px 0 0 10px;
+            text-transform: uppercase;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #004a8d;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .protocol-box {
+            background-color: #f0f7ff;
+            border: 1px solid #cce0ff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .deadline-box {
+            background-color: #fff0f0;
+            border: 2px solid #cc0000;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .deadline-title {
+            color: #cc0000;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .print-section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px dashed #999;
+        }
+        
+        .instructions-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            table-layout: fixed;
+        }
+        
+        .instructions-table td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            vertical-align: top;
+            text-align: center;
+        }
+        
+        .instructions-table .text-cell {
+            font-weight: bold;
+            background-color: #f0f0f0;
+            font-size: 13px;
+            padding: 10px;
+            height: 50px;
+            vertical-align: middle;
+        }
+        
+        .instructions-table .content-cell {
+            background-color: white;
+            padding: 10px;
+            height: 250px;
+        }
+        
+        .instructions-table img {
+            max-width: 100%;
+            max-height: 220px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            object-fit: contain;
+        }
+        
+        .telephone-text {
+            background-color: #f0f0f0;
+            padding: 15px;
+            font-style: italic;
+            text-align: justify;
+            border: 1px dashed #999;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        
+        .signature-area {
+            margin-top: 50px;
+        }
+        
+        .signature-line {
+            margin-top: 40px;
+        }
+        
+        .signature-field {
+            width: 300px;
+            border-bottom: 2px solid #333;
+            margin: 30px auto 10px;
+            padding-top: 30px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 14px;
+        }
+        
+        .contact-line {
+            margin: 8px 0;
+            padding: 5px 0;
+            border-bottom: 1px dotted #ddd;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-label {
+            min-width: 80px;
+            font-weight: bold;
+        }
+        
+        .contact-value {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #004a8d;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .institutional-stamp {
+            height: 100px;
+            width: 200px;
+            border: 2px dashed #999;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="document-container">
+        <div class="header">
+            <div class="logos-container">
+                <div class="logo-box">
+                    <img src="https://raw.githubusercontent.com/alc-etimo/portfolio/main/logo_fmr.png" alt="Logo FMR" style="max-width: 100%; height: 100%;" />
+                </div>
+                <div class="logo-box">
+                    <img src="https://raw.githubusercontent.com/alc-etimo/portfolio/main/logo_emlds.png" alt="Logo EMLDS" style="max-width: 100%; height: 100%;" />
+                </div>
+            </div>
+  
+            <div class="title">SOLICITAÇÃO URGENTE DE ANTECIPAÇÃO DE EXPEDIÇÃO DE DIPLOMA</div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">DADOS DO SOLICITANTE</div>
+            <p><strong>Nome:</strong> ARIANE LESNYAK CASTELLÓ</p>
+            <p><strong>RA:</strong> 708100164</p>
+            <p><strong>Curso:</strong> Tecnologia em Gestão da Tecnologia da Informação</p>
+            <p><strong>Turma:</strong> 04A - Noturno (Conclusão: 2009/2)</p>
+        </div>
+        
+        <div class="protocol-box">
+            <div class="section-title">PROTOCOLO DE SOLICITAÇÃO</div>
+            <p><strong>Protocolo Nº:</strong> 000000011012367</p>
+            <p><strong>Data da Solicitação:</strong> 03 de dezembro de 2025</p>
+            <p><strong>Prazo Padrão Informado:</strong> 90 dias (até 03 de março de 2026)</p>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">MOTIVO DA URGÊNCIA</div>
+            <p style="text-align:justify;">Venho por meio deste documento, de forma respeitosa e urgente, solicitar a <strong>antecipação urgente</strong> da confecção e entrega do meu diploma, em razão de um prazo internacional irrenunciável para inscrição em programa de mestrado.</p>
+        </div>
+        
+        <div class="deadline-box">
+            <div class="deadline-title">⚠️ PRAZO INTERNACIONAL CRÍTICO</div>
+            <p><strong>Programa:</strong> <a href="https://emlds.fcsh.unl.pt" target="_blank">European Master in Linguistic Data Science (EMLDS)</a></p>
+            <p><strong>Instituições:</strong></p>
+            <ul>
+                <li style="margin-left:20px;">Universidade Nova de Lisboa, Portugal</li>
+                <li style="margin-left:20px;">Università del Sacro Cuore Milan, Itália</li>
+                <li style="margin-left:20px;">University of Zaragoza, Espanha</li>
+            </ul>
+            <p><strong>Site oficial:</strong> <a href="https://emlds.fcsh.unl.pt" target="_blank">https://emlds.fcsh.unl.pt</a></p>
+            
+            <div style="margin: 15px 0; padding: 10px; background: #fff; border-left: 3px solid #cc0000;">
+                <p><strong>Trecho oficial do site (em inglês):</strong></p>
+                <img src="https://raw.githubusercontent.com/alc-etimo/portfolio/main/página do EMLDS en.png" alt="Trecho dos prazos do EMLDS em inglês" style="max-width: 100%; height: auto; display: block; margin: 10px auto;" />
+            </div>
+            
+            <div style="margin: 15px 0; padding: 10px; background: #fff; border-left: 3px solid #cc0000;">
+                <p><strong>Trecho oficial do site (traduzido):</strong></p>
+                <img src="https://raw.githubusercontent.com/alc-etimo/portfolio/main/página do EMLDS ptbr.png" alt="Trecho dos prazos do EMLDS em português" style="max-width: 100%; height: auto; display: block; margin: 10px auto;" />
+            </div>
+        </div>
+        
+        <div class="print-section">
+            <div class="section-title">ORIENTAÇÕES RECEBIDAS DA SECRETARIA</div>
+            
+            <table class="instructions-table">
+                <colgroup>
+                    <col style="width: 35%;">
+                    <col style="width: 35%;">
+                    <col style="width: 30%;">
+                </colgroup>
+                <tr>
+                    <td class="text-cell">Chat com Everton<br>(Sistema da Faculdade)<br>em 19/12/2025</td>
+                    <td class="text-cell">Chat com Nathalia<br>(Sistema da Faculdade)<br>em 18/12/2025</td>
+                    <td class="text-cell">Contato Telefônico<br>com a Sra. Angélica<br>em 19/12/2025</td>
+                </tr>
+                <tr>
+                    <td class="content-cell">
+                        <img src="https://raw.githubusercontent.com/alc-etimo/portfolio/main/print everton.png" alt="Print da conversa por chat do sistema acadêmico com Everton" />
+                    </td>
+                    <td class="content-cell">
+                        <img src="https://raw.githubusercontent.com/alc-etimo/portfolio/main/print nathalia.png" alt="Print da conversa por chat do sistema acadêmico com Nathalia" />
+                    </td>
+                    <td class="content-cell">
+                        <div class="telephone-text">
+                            Orientação para a formalização deste documento para solicitação de urgência na confecção do diploma de graduação.
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">APELO E JUSTIFICATIVA</div>
+            <p style="text-align:justify;"><strong>O prazo padrão de 90 dias informado no protocolo original ultrapassa significativamente o limite de inscrição do mestrado</strong>, o que acarretará na perda da minha candidatura e da bolsa de estudos vinculada.</p><br>
+            
+            <p style="text-align:justify;">Dado que sou egressa de 2009 e <strong>tenho toda a documentação regularizada no sistema da faculdade</strong>, solicito, por favor, a gentileza de priorizar este registro.</p><br>
+            
+            <p style="text-align:justify;">Ressalto que <strong>já realizei a solicitação formal no dia 03/12/2025</strong> e estou à disposição para quaisquer taxas de urgência ou procedimentos adicionais que se façam necessários para viabilizar a entrega até, no máximo, o dia <strong>20/01/2026</strong> (garantindo margem para a submissão digital).</p><br>
+            
+            <p style="text-align:justify;">Certa de sua compreensão e do apoio histórico desta instituição ao desenvolvimento profissional de seus alunos, aguardo deferimento.</p><br>
+        </div>
+       
+        <div class="signature-area">
+            <div class="section-title">ASSINATURA DO SOLICITANTE</div> 
+            <div class="date-header">Torre de Pedra, 19 de dezembro de 2025</div>
+            <div class="signature-field">
+                <img src="https://raw.githubusercontent.com/alc-etimo/portfolio/main/assinatura.png" alt="Assinatura" style="max-width: 60%; height: auto;" />
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-line">
+                    <div class="contact-label">RG:</div>
+                    <div class="contact-value">
+                        <img src="https://raw.githubusercontent.com/alc-etimo/portfolio/main/rg.png" alt="RG" style="max-width: 20%; height: auto;" />
+                    </div>
+                </div>
+                <div class="contact-line">
+                    <div class="contact-label">CPF:</div>
+                    <div class="contact-value">
+                        <img src="https://raw.githubusercontent.com/alc-etimo/portfolio/main/cpf.png" alt="CPF" style="max-width: 20%; height: auto;" />
+                    </div>
+                </div>
+                <div class="contact-line">
+                    <div class="contact-label">Telefone:</div>
+                    <div class="contact-value">
+                        <img src="https://raw.githubusercontent.com/alc-etimo/portfolio/main/telefone.png" alt="Telefone" style="max-width: 25%; height: auto;" />
+                    </div>
+                </div>
+                <div class="contact-line">
+                    <div class="contact-label">E-mail:</div>
+                    <div class="contact-value">
+                        <img src="https://raw.githubusercontent.com/alc-etimo/portfolio/main/e-mail.png" alt="E-mail" style="max-width: 30%; height: auto;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="signature-line">
+            <div class="section-title">PARA PREENCHIMENTO DA SECRETARIA ACADÊMICA</div>
+            <div style="margin: 20px 0;">
+                <p><strong>Recebido por:</strong> _________________________________________</p>
+                <p><strong>Data do recebimento:</strong> _______________________________</p>
+                <p><strong>Carimbo da instituição:</strong></p>
+                <div class="institutional-stamp">
+                    CARIMBO DA INSTITUIÇÃO
+                </div>
+                <p><strong>Assinatura do responsável:</strong> ___________________________</p>
+                <p><strong>Previsão de entrega:</strong> __________________________________</p>
+                <p><strong>Observações:</strong> _________________________________________</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Faculdade Marechal Rondon (FMR) | Rua Viena, Dr. Nilo Lisboa Chavasco, 5000 - São Manuel - SP</p>
+            <p>Atendimento: Segunda a sexta das 14h às 22h | Sábados das 8h às 12h</p>
+        </div>
+    </div>
+</body>
+</html>
